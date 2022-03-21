@@ -1,5 +1,4 @@
 allprojects {
-    version = '1.0.0'
     plugins.withType(JavaPlugin) {
         dependencies {
             testImplementation 'junit:junit:4.12'
@@ -9,6 +8,7 @@ allprojects {
 
 subprojects {
     apply plugin: 'java'
+    apply plugin: VersionGenerator
 
     java {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -23,5 +23,20 @@ subprojects {
         testLogging {
             events "passed", "skipped", "failed"
         }
+    }
+}
+
+class VersionGenerator implements Plugin<Project> {
+    void apply(Project project) {
+        String env
+        try {
+            env = project.getProperty('env')
+        } catch (Exception ignored) {
+            env = 'LOCAL'
+        }
+        project.version = String.format('%s.%s-%s',
+                project.getProperty('majorVersion'),
+                project.getProperty('minorVersion'),
+                env)
     }
 }
