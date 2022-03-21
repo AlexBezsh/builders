@@ -1,9 +1,9 @@
-To run Maven build:
+Maven build:
     - with tests: mvn clean package
     - without tests: mvn clean package -DskipTests
     - only tests: mvn test
 
-To run Gradle build:
-    - with tests:
-    - without tests:
-    - only tests
+Gradle build:
+    - with tests: gradle build
+    - without tests: gradle build -x test
+    - only tests: gradle test
