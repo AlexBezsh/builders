@@ -18,6 +18,7 @@ public class AdminEntryPoint {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         String hello = properties.getProperty("hello");
         System.out.println("You say " + Arrays.deepToString(args) + ", I say " + hello + " " + helloFromService);
     }
